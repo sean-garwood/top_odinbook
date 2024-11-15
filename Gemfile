@@ -43,6 +43,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "guard", "~> 2.19"
+  gem "guard-minitest", "~> 2.4", ">= 2.4.6"
 end
 
 group :development do
