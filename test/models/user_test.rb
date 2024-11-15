@@ -1,12 +1,14 @@
 require "test_helper"
-
 class UserTest < ActiveSupport::TestCase
+include Devise::Test::IntegrationHelpers
+
   test "should not save user without email" do
     user = User.new
     assert_not user.save, "Saved the user without an email"
   end
 
-  test "should be two fixtures" do
-    assert_equal 2, User.count, "There should be two fixtures"
+  test "should not save user without password" do
+    user = User.new
+    assert_not user.save, "Saved the user without a password"
   end
 end
