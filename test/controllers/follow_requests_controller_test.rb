@@ -12,6 +12,7 @@ include Devise::Test::IntegrationHelpers
 
   test "should get new" do
     get new_follow_request_path
+    Rails.logger.info "#{response.body}"
     assert_response :success
   end
 
