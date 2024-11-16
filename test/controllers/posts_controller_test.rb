@@ -36,4 +36,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     post posts_path, params: { post: { title: @post.title, body: @post.body } }
     assert_response :redirect, "Failed to create post"
   end
+
+  test "should show post" do
+    get post_path(posts(:one))
+    assert_response :success, "Failed to show post"
+  end
+
+  test "user can like post" do
+    @post = posts(:one)
+    post like_post_path(@post)
+    assert_response :success, "Failed to like post"
+  end
 end

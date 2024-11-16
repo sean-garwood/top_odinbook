@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   def index
     # code to list all posts
+    # TODO: scope by own posts and followed users' (leaders) posts
   end
 
   def show
     # code to show a single post
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -18,8 +20,6 @@ class PostsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
-    # code to create a new post
   end
 
   def edit
@@ -27,11 +27,21 @@ class PostsController < ApplicationController
   end
 
   def update
-    # code to update a post
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
     # code to delete a post
+  end
+
+  def like
+    @post = Post.find(params[:id])
+    @like = current_user.likes.build(post: @post)
   end
 
   private
