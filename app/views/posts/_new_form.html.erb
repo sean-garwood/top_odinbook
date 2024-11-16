@@ -1,0 +1,10 @@
+<div>
+  <h2>create a post here</h2>
+  <div class="form">
+    <%= form_with model: @post do |post_form| %>
+      <%= post_form.text_field :title %>
+      <%= post_form.text_field :body %>
+      <%= post_form.submit "Create Post" %>
+    <% end %>
+  </div>
+</div>

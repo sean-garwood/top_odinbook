@@ -1,2 +1,15 @@
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
+<div class="posts-container">
+  <% @posts.each do |post| %>
+    <div class="post-container">
+      <h2 class="post-title"><%= post.title %></h2>
+      <div class="post-info-container">
+        <p>By <%= post.author.email %> at <%= post.created_at %></p>
+      </div>
+      <div class="post-body-container">
+        <p><%= post.body %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
