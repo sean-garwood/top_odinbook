@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     # code to list all posts
-    # TODO: scope by own posts and followed users' (leaders) posts
+    @posts = Post.includes(:user).where(user: current_user.leaders).or(Post.where(user: current_user)).order(created_at: :desc)
   end
 
   def show
