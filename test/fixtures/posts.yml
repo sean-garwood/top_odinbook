@@ -3,11 +3,9 @@
 one:
   author: one
   body: MyText
-  likes: 1
   title: MyText
 
 two:
   author: two
   body: MyText
-  likes: 1
   title: MyText

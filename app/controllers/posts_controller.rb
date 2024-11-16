@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = Post.find(post_params)
     if @post.update(post_params)
       redirect_to @post
     else
@@ -39,7 +39,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    # code to delete a post
+    @post = Post.find(params[:id])
+    Rails.logger.debug { "\e[1;31m#{@post.inspect}\e[0m" }
+    @post.destroy
+    redirect_to root_path, status: :see_other
   end
 
   def like

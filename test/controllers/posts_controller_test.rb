@@ -47,4 +47,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     post like_post_path(@post)
     assert_response :success, "Failed to like post"
   end
+
+  test "should destroy post" do
+    @post = posts(:one)
+    delete post_path(@post)
+    assert_response :redirect, "Failed to destroy post"
+  end
 end
