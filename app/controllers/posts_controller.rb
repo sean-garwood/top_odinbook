@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     # code to list all posts
-    @posts = Post.includes(:user).where(user: current_user.leaders).or(Post.where(user: current_user)).order(created_at: :desc)
+    @posts = Post.all
   end
 
   def show
@@ -11,11 +11,14 @@ class PostsController < ApplicationController
 
   def new
     # code to display form for a new post
+    @post = Post.new
   end
 
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+      # display success
+      flash[:notice] = "Post was created successfully."
       redirect_to @post
     else
       render :new, status: :unprocessable_entity

@@ -1,2 +1,8 @@
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
+<% @posts.each do |post| %>
+  <h2><%= post.title %></h2>
+  <p>By <%= post.author.email %></p>
+  <p>At <%= post.created_at %></p>
+  <p><%= post.body %></p>
+<% end %>
