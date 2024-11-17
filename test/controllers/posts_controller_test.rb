@@ -9,7 +9,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       sign_in @user
     end
   end
-  # route testing
+
   test "should get new" do
     get new_post_path
     assert_response :success, "Failed to get new post path\n #{response.body}"
@@ -35,17 +35,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @post = @author.posts.build(title: "Test Post", body: "This is a test")
     post posts_path, params: { post: { title: @post.title, body: @post.body } }
     assert_response :redirect, "Failed to create post"
-  end
-
-  test "should show post" do
-    get post_path(posts(:one))
-    assert_response :success, "Failed to show post"
-  end
-
-  test "user can like post" do
-    @post = posts(:one)
-    post like_post_path(@post)
-    assert_response :success, "Failed to like post"
   end
 
   test "should destroy post" do

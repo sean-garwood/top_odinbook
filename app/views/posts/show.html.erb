@@ -3,3 +3,8 @@
 <h2><%= @post.title %></h2>
 <p><%= @post.body %></p>
 <%= link_to "Edit Post", edit_post_path(@post) %>
+<%= link_to "Delete Post", post_path(@post), data: { "turbo-method": :delete } %>
+<%= form_with model: [@post, Like.new] do |like_form| %>
+  <%= like_form.submit "Like" %>
+<% end %>
+<%# TODO: make a comment button %>

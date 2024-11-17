@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :check_if_already_liked, only: :like
   def index
     # code to list all posts
     @posts = Post.all
@@ -47,20 +46,8 @@ class PostsController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
-  def like
-    @post = Post.find(params[:id])
-    @like.save
-  end
-
   private
     def post_params
       params.require(:post).permit(:title, :body, :author_id)
-    end
-
-    def check_if_already_liked
-    @like = current_user.likes.build(post: @post)
-      if current_user.likes.include?(@like)
-        flash[:notice] = "You already liked this post."
-      end
     end
 end

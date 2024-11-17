@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   resources :follow_requests, only: %i[new create show destroy]
   resources :posts do
-    member { post :like }
+    resources :likes, only: [ :create, :destroy ]
   end
 
-  resources :likes, only: %i[create destroy]
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
