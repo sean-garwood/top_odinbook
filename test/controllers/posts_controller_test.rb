@@ -53,4 +53,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     delete post_path(@post)
     assert_response :redirect, "Failed to destroy post"
   end
+
+  test "should update post" do
+    @post = posts(:one)
+    patch post_path(@post), params: { post: { title: "Updated Title", body: "Updated Body" } }
+    assert_response :redirect, "Failed to update post"
+  end
 end

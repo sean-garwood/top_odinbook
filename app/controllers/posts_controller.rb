@@ -27,10 +27,11 @@ class PostsController < ApplicationController
 
   def edit
     # code to display form for editing a post
+    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(post_params)
+    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to @post
     else
@@ -52,6 +53,6 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :author_id)
     end
 end
