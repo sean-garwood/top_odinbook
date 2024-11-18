@@ -17,12 +17,37 @@
 @import "post";
 
 html {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
 div a {
   color: #007bff;
   text-decoration: none;
+}
+
+.container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flash {
+  padding: 10px;
+  margin-bottom: 10px auto;
+  border-radius: 5px;
+}
+
+.flash.notice {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.flash.alert,
+.flash.error {
+  background-color: #f2dede;
+  color: #a94442;
 }
 
 .navbar {

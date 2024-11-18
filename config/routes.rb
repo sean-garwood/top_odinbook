@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :follow_requests, only: %i[new create show destroy]
   resources :posts do
-    resources :likes, only: [ :create, :destroy ]
+    resources :likes, :comments, only: [ :create, :destroy ]
   end
 
 

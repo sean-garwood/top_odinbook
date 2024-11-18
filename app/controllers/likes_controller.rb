@@ -7,6 +7,7 @@ class LikesController < ApplicationController
     else
       flash[:alert] = "Failed to like post."
     end
+    redirect_to post_path(@post)
   end
 
   # def destroy

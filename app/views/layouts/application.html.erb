@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%= render partial: "layouts/header/head" %>
-  </head>
-  <body>
-    <%= render partial: "layouts/header" %>
-    <%= yield %>
-  </body>
+  <div class="container">
+    <head>
+      <%= render partial: "layouts/header/head" %>
+    </head>
+    <body>
+      <%= render partial: "layouts/header" %>
+      <%= yield %>
+    </body>
+  </div>
 </html>
