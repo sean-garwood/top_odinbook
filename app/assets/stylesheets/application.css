@@ -24,6 +24,7 @@ html {
 div a {
   color: #007bff;
   text-decoration: none;
+  margin: 0.5em;
 }
 
 .container {
