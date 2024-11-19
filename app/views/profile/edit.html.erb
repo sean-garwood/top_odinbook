@@ -2,7 +2,7 @@
 <p>Find me in app/views/profile/edit.html.erb</p>
 <div class="profile-container">
   <div class="profile">
-    <h2><%= @profile.user.email %></h2>
+    <h2><%= @profile.user.email %>'s profile</h2>
     <%= form_with model: @profile do |profile_form| %>
       <div class="form">
         <%= profile_form.label :bio %>
