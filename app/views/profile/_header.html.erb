@@ -1,0 +1,8 @@
+<h1><%= action_name == "edit" ? "Edit" : nil %> Profile</h1>
+<p>Keep the world apprised of your state--as if it cares.</p>
+<h2>
+  <div class="profile-header">
+    <span class="profile-banner"><img class="avatar" src=<%=
+        avatar_src_url(@email) %>&alt="profile pic"></span><%= @email %>
+  </div>
+</h2>

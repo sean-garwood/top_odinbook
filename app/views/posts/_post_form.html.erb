@@ -1,10 +1,20 @@
-<div>
-  <h2>create or edit a post here</h2>
-  <div class="form">
-    <%= form_with model: @post do |post_form| %>
-      <%= post_form.text_field :title %>
-      <%= post_form.text_field :body  %>
-      <%= post_form.submit "Submit" %>
-    <% end %>
-  </div>
+<div class="post-form">
+  <%= form_with model: @post do |post_form| %>
+    <fieldset>
+      <legend>
+        <h2><%= "#{action_name.capitalize} post" %></h2>
+      </legend>
+      <div class="post-form-fields-container">
+        <div class="post-title">
+          <%= post_form.label :title %>
+          <%= post_form.text_field :title %>
+        </div>
+        <div class="post-body">
+          <%= post_form.label :body  %>
+          <%= post_form.text_area :body  %>
+        </div>
+      </div>
+    </fieldset>
+    <%= post_form.submit "Submit" %>
+  <% end %>
 </div>

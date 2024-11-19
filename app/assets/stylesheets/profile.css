@@ -1,0 +1,20 @@
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: azure;
+  padding-left: 1em;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}

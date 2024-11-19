@@ -4,6 +4,11 @@
   margin: 10px;
 }
 
+.post-body-container {
+  font-size: 1.2em;
+  background-color: antiquewhite;
+}
+
 .post-container {
   margin: 10px;
   padding: 10px;
@@ -16,9 +21,18 @@
   /* fit content to width with max at 80vw */
 }
 
-.post-body-container {
-  font-size: 1.2em;
-  background-color: antiquewhite;
+.post-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: lightgray;
+}
+
+.post-form-fields-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  gap: 10px;
 }
 
 .author-info-container {
