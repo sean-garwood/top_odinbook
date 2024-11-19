@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authorize, only: [ :edit, :update, :destroy ]
   def index
     # code to list all posts
     @posts = Post.all
@@ -27,11 +28,9 @@ class PostsController < ApplicationController
 
   def edit
     # code to display form for editing a post
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to @post
     else
@@ -40,8 +39,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    Rails.logger.debug { "\e[1;31m#{@post.inspect}\e[0m" }
     @post.destroy
     redirect_to root_path, status: :see_other
   end
@@ -49,5 +46,15 @@ class PostsController < ApplicationController
   private
     def post_params
       params.require(:post).permit(:title, :body, :author_id)
+    end
+
+    def authorize
+      # check if the current_user is the post.author
+      @post = Post.find(params[:id])
+      unless current_user == @post.author
+        flash[:alert] = "You are not authorized to perform this action."
+        redirect_to root_path
+      end
+      @post
     end
 end

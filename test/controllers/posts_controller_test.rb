@@ -20,7 +20,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    get edit_post_path(posts(:one))
+    @post = @user.posts.create(title: "Test Post", body: "This is a test")
+    get edit_post_path(@post)
     assert_response :success, "Failed to get edit post path"
   end
 
