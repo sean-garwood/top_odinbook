@@ -1,0 +1,5 @@
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: fit-content;
+}

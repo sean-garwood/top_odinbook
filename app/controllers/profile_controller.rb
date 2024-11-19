@@ -1,18 +1,18 @@
 class ProfileController < ApplicationController
+  before_action -> { @profile = current_user.profile }
   def show
-    @profile = current_user.profile
+    @email = current_user.email
   end
 
   def edit
-    @profile = current_user.profile
   end
 
   def update
-    @profile = current_user.profile
     if @profile.update(profile_params)
       redirect_to profile_path, notice: "Profile updated"
     else
-      render :edit
+      flash.now[:alert] = "Profile not updated: #{@profile.errors.full_messages.join(", ")}"
+      render :edit, status: :unprocessable_entity
     end
   end
 

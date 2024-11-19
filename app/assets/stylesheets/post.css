@@ -1,3 +1,9 @@
+.post-actions-container {
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px;
+}
+
 .post-container {
   margin: 10px;
   padding: 10px;

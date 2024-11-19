@@ -2,7 +2,9 @@
 <p>Find me in app/views/profile/show.html.erb</p>
 <div class="profile-container">
   <div class="profile">
-    <h2><%= @profile.user.email %></h2>
+    <div class="profile-header">
+      <h2><span><img src=<%= avatar_src_url(@email) %>alt="profile pic"></span><%= @email %></h2>
+    </div>
     <p><%= @profile.bio %></p>
   </div>
 </div>
