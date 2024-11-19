@@ -1,7 +1,5 @@
 class ProfileController < ApplicationController
-  before_action -> { @profile = current_user.profile }
   def show
-    @email = current_user.email
   end
 
   def edit
