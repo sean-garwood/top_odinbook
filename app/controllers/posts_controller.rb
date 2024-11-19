@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authorize, only: [ :edit, :update, :destroy ]
+
   def index
     # code to list all posts
     @posts = Post.all
@@ -43,6 +44,7 @@ class PostsController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+
   private
     def post_params
       params.require(:post).permit(:title, :body, :author_id)
@@ -50,6 +52,7 @@ class PostsController < ApplicationController
 
     def authorize
       # check if the current_user is the post.author
+      Rails.logger.debug { "Authorizing user." }
       @post = Post.find(params[:id])
       unless current_user == @post.author
         flash[:alert] = "You are not authorized to perform this action."

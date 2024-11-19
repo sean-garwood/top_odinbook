@@ -1,5 +1,7 @@
 <div class="comments-container">
-  <h2><%= @post.comments.size %> Comments:</h2>
+  <h2>
+    <%= @post.comments_count %> Comment<%= (@post.comments_count == 1) ? "" : "s" %>
+  </h2>
   <% @post.comments.each do |comment| %>
     <div class="author-info-container">
       <p><%= comment.author.email %>, <%= comment.created_at %></p>
