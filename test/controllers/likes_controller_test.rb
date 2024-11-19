@@ -1,7 +1,6 @@
 require "test_helper"
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
   setup do
     @user = users(:one)
     @post = posts(:one)
@@ -12,7 +11,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     @user = users(:one)
     @post = @user.posts.build(title: "Test Post", body: "This is a test")
     @post.save
-    post post_likes_path(@post, @user)
-    assert_response :success, "Failed to like post"
+    post post_likes_path(@post, Like.new)
+    assert @post.likes.count == 1, "Like not created"
   end
 end

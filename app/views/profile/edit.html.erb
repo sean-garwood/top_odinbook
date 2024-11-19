@@ -1,0 +1,14 @@
+<h1>Profile#edit</h1>
+<p>Find me in app/views/profile/edit.html.erb</p>
+<div class="profile-container">
+  <div class="profile">
+    <h2><%= @profile.user.email %></h2>
+    <%= form_with model: @profile do |profile_form| %>
+      <div class="form">
+        <%= profile_form.label :bio %>
+        <%= profile_form.text_area :bio %>
+        <%= profile_form.submit "Submit" %>
+      </div>
+    <% end %>
+  </div>
+</div>

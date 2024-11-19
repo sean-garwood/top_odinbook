@@ -9,3 +9,13 @@ two:
   follower: two
   leader: one
   status: accepted
+
+three:
+  follower: three
+  leader: one
+  status: pending
+
+four:
+  follower: one
+  leader: three
+  status: pending

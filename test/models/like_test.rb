@@ -1,7 +1,6 @@
 require "test_helper"
 
 class LikeTest < ActiveSupport::TestCase
-  include Devise::Test::IntegrationHelpers
   setup do
     @user = users(:one)
     @post = posts(:one)

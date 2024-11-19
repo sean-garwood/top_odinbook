@@ -1,0 +1,12 @@
+<div class="post-actions-container">
+  <%= link_to "Edit Post", edit_post_path(@post) %>
+  <%= link_to "Delete Post", post_path(@post), data: { "turbo-method": :delete }
+  %>
+  <%= form_with model: [@post, Comment.new] do |comment_form| %>
+    <%= comment_form.text_area :body %>
+    <%= comment_form.submit "Comment" %>
+  <% end %>
+  <%= form_with model: [@post, Like.new] do |like_form| %>
+    <%= like_form.submit "Like" %>
+  <% end %>
+</div>

@@ -1,27 +1,4 @@
-<div class="post-container">
-  <h2><%= @post.title %></h2>
-  <p><%= @post.body %></p>
-  <p><%= @post.likes.size %> likes</p>
-</div>
-<div class="comments-container">
-  <h2><%= @post.comments.size %> Comments:</h2>
-  <% @post.comments.each do |comment| %>
-    <div class="author-info-container">
-      <p><%= comment.author.email %>, <%= comment.created_at %></p>
-    </div>
-    <p><%= comment.body %></p>
-  <% end %>
-</div>
-<div class="post-actions-container">
-  <%= link_to "Edit Post", edit_post_path(@post) %>
-  <%= link_to "Delete Post", post_path(@post), data: { "turbo-method": :delete }
-  %>
-  <%= form_with model: [@post, Comment.new] do |comment_form| %>
-    <%= comment_form.text_area :body %>
-    <%= comment_form.submit "Comment" %>
-  <% end %>
-  <%= form_with model: [@post, Like.new] do |like_form| %>
-    <%= like_form.submit "Like" %>
-  <% end %>
-</div>
+<%= render partial: 'post' %>
+<%= render partial: 'comments' %>
+<%= render partial: 'actions' %>
 <%# TODO: make a comment button %>

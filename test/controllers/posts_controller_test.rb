@@ -1,7 +1,6 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
   setup do
     @users = users
     @users.each do |user|

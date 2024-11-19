@@ -1,0 +1,11 @@
+<h1>Profile#show</h1>
+<p>Find me in app/views/profile/show.html.erb</p>
+<div class="profile-container">
+  <div class="profile">
+    <h2><%= @profile.user.email %></h2>
+    <p><%= @profile.bio %></p>
+  </div>
+</div>
+<div>
+  <%= link_to "Edit Profile", edit_profile_path %>
+</div>

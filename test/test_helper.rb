@@ -4,6 +4,7 @@ require "rails/test_help"
 
 module ActiveSupport
   class TestCase
+    include Devise::Test::IntegrationHelpers
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
@@ -11,5 +12,11 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    def create_and_sign_in_user
+      @user = User.create(email: Faker::Internet.unique.email, password: "password")
+      sign_in @user
+      @user.save
+      @user
+    end
   end
 end
