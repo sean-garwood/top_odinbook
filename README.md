@@ -14,7 +14,10 @@ This project will give you a chance to take a relatively high level set of requi
 
 ### Specifications
 
-Keep the following requirements in mind. We’ll cover specific steps to get started below this list:
+Keep the following requirements in mind. We’ll cover specific steps to get
+started below this list:
+
+#### done
 
 1. Use PostgreSQL for your database from the beginning (not SQLite3), that way your deployment will go much more smoothly.
 1. Users must sign in to see anything except the sign in page.
@@ -24,20 +27,27 @@ Keep the following requirements in mind. We’ll cover specific steps to get sta
 1. Users can like posts.
 1. Users can comment on posts.
 1. Posts should always display the post content, author, comments, and likes.
-1. There should be an index page for posts, which shows all the recent posts from the current user and users they are following.
 1. Users can create a profile with a profile picture. You may be able to get the profile picture when users sign in using OmniAuth. If this isn’t the case you can use Gravatar to generate the photo.
 1. A user’s profile page should contain their profile information, profile photo, and posts.
 1. There should be an index page for users, which shows all users and buttons for sending follow requests to users the user is not already following or have a pending request.
+1. There should be an index page for posts, which shows all the recent posts from the current user and users they are following.
 1. Set up a mailer to send a welcome email when a new user signs up. Use the Letter Opener gem to test it in development mode.
+
+#### todo
+
 1. Deploy your App to a hosting provider.
 1. Set up an email provider and start sending real emails.
+1. (NOT SPECIFIED, BUT NICE TO HAVE) Allow users to view and accept friend
+   requests. This could be done on the views/requests/index.html.erb with
+   embedded buttons
 
-### Extra credit
+##### Extra credit
 
 1. Make posts also allow images (either just via a URL or, more complicated, by uploading one).
 1. Use Active Storage to allow users to upload a photo to their profile.
 1. Make your post able to be either a text OR a photo by using a polymorphic association (so users can still like or comment on it while being none-the-wiser).
 1. Style it up nicely! We’ll dive into HTML/CSS in the next course.
+1. (not specified, but cool) Use turbo frames to avoid rendering entire pages
 
 ### Getting started
 

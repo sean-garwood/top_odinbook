@@ -48,4 +48,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     patch post_path(@post), params: { post: { title: "Updated Title", body: "Updated Body" } }
     assert_response :redirect, "Failed to update post"
   end
+
+  test "index should only show posts from self and followed users" do
+    get posts_path
+    assert_select ".post-container", (Post.by_followed_users(@user).count + @user.posts.count)
+  end
 end

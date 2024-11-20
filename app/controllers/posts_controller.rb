@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     # code to list all posts
-    @posts = Post.all
+    @posts = Post.by_followed_users(current_user)
   end
 
   def show

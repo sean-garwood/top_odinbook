@@ -14,12 +14,14 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
   has_many :posts, inverse_of: :author, dependent: :destroy
   has_one :profile, dependent: :destroy, inverse_of: :user, touch: true
+  delegate :name, to: :profile, allow_nil: true
   validates_presence_of :email, unique: true
 
   private
     def build_default_profile
-      @profile = Profile.new(user: self)
-      @profile.bio = "Welcome to my profile! I have not updated the default bio."
+      @profile = Profile.new(user: self,
+        name: Faker::TvShows::Simpsons.character,
+        bio: Faker::TvShows::Simpsons.quote)
       logger = (@profile.save) ? "Profile created successfully." : "Failed to create profile."
       Rails.logger.info { logger }
     end

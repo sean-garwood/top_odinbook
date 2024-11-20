@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gToons</title>
+  <style>
+    body {
+      font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background-color: #00ffff;
+      margin: 0 50px;
+      /* align the page in the center */
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      min-width: 380px;
+    }
+
+    .content,
+    .header {
+      max-width: 800px;
+    }
+
+    .img-caption {
+      margin: 0.5em 1em;
+      font-style: italic;
+      font-size: 12px;
+      color: grey;
+    }
+
+    .img-container {
+      margin: 0.5em 0 1em;
+    }
+
+    #banner,
+    #gtoons-app {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .store-link {
+      height: 100px;
+      width: 200px;
+    }
+
+    ul.logo {
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content-container">
+    <h1>gToons</h1>
+    <h2>The Game of Kings</h2>
+    <p>On October 14th, 2002, Cartoon Network released gToons. The game could be played on Cartoon Orbit: a Flash web
+      app in which users could create an account and earn points to purchase cToons to decorate their cZones with, and
+      now, purchase and play gToons.</p>
+    <p>Users could sell these items in auctions, or trade these items with other users. gToons, however, implemented a
+      lobby-and-leaderboard format in which a player could play a random match--truly random, since rank was not taken
+      into consideration--or issue a challenge to another player.</p>
+    <p>Wins would net a player roughly eight to nine rating points against a much lower-rated opponent, while a loss
+      against such an opponent might net negative four to five points. If one were to defeat someone much higher ranked
+      than them, they might earn twelve or fourteen points, but a loss against such an opponent would earn them no more
+      than negative five.</p> Cartoon Orbit, and thus gToons, ceased operations sometime in September 2006, and with it,
+    the lobby. Luckily, the game can still be played in its entirety at this wonderful site: <div class="img-container">
+      <a href="https://gtoons.app"><img id="gtoons-app" src="./gtoons_app.png" alt=""></a>
+    </div>
+    <h2>Rules</h2>
+    <h3>Win conditions</h3>
+    <p>The two win conditions follow, listed in order of precedence:</p>
+    <ol>
+      <li>Color: A player wins by color if he or she has more cards in play of two certain colors at the end of the
+        match.</li>
+      <li>Points: A player wins by points if he or she has more points than their opponent at the end of the match.</li>
+    </ol>
+    <p>If neither of these conditions are met, the game is a tie.</p>
+    <h3>Attributes of the cards</h3>
+    <p>Every card in gToons has four attributes that affected gameplay:</p>
+    <ul>
+      <li>Color</li>
+      <li>Point value</li>
+      <li>Character</li>
+      <li>Power</li>
+    </ul>
+    <h4>Color</h4>
+    <p>Every card has one of the following colors:</p>
+    <ul>
+      <li>Black*</li>
+      <li>Blue</li>
+      <li>Green</li>
+      <li>Orange</li>
+      <li>Purple</li>
+      <li>Red</li>
+      <li>Silver*</li>
+      <li>Yellow</li>
+    </ul>
+    <h5>* - Non-colors</h5>
+    <ul>
+      <li>Black - neutral, does not count toward color wins or bonuses.</li>
+      <li>Silver - same attribute as Black, but also can be chosen to be any color, including Silver itself.</li>
+    </ul>
+    <p>More on color to follow in the <a href="#gameplay">gameplay section</a>.</p>
+    <h4>Point value</h4>
+    <p>Cards are worth anywhere from one to twelve points. Silver cards are worth 1-3; black cards are worth 8-10.</p>
+    <h4>Character</h4>
+    <p>Only one card may be in play with a given character attribute. If a card is revealed to have a character
+      attribute that is already in play, then the highest-point value card is "cancelled," or removed from play. If they
+      have the same point value, then both are cancelled.</p>
+    <h4>Power</h4>
+    <p>Text that dictates an added effect that a card has while it is in play. Not all cards have powers.</p>
+    <h3 id="gameplay">Gameplay</h3>
+    <h4>Phases</h4>
+    <p>Gameplay can be broken up into three main phases:</p>
+    <ul>
+      <li>Cut phase</li>
+      <li>Turn 1</li>
+      <li>Turn 2</li>
+    </ul>
+    <h5>Cut phase</h5>
+    <p>Players choose form one of four decks consisting of exactly twelve cards each: A, B, C or D. (These decks are
+      built outside the game itself.)</p> Then, the bottom card from each player's deck is revealed. There are three
+    possibilities: <ol>
+      <li>Two colors--neither of which are "non-colors," i.e. silver or black--are revealed</li>
+      <ul>*The color win condition is possible if and only if this occurs.*</ul>
+      <li>One non-color is revealed, and one color is revealed.</li>
+      <ul>A "color bonus" of fifteen points is added to the total of the player with the most cards of that color in
+        play at the end of the game.</ul>
+      <li>No colors are revealed</li>
+      <ul>Nothing happens.</ul>
+    </ol>
+    <h5>Turn 1</h5>
+    <p>Players are dealt six cards from their deck. They play four of them, face-down, in four slots on the gameboard,
+      which has fourteen total slots--seven for each player, in a half-honeycomb formation--that forms a hexagon that is
+      bisected widthwise to delineate each player's side of the gameboard on which they may place their cards. (It is
+      helpful to think of these as numbered from one to seven on each player's side.)</p>
+    <p>The cards are revealed one-by-one, powers and cancellations resolve, and points and colors (if applicable) are
+      tallied.</p>
+    <p>Of the two remaining cards in each player's hand, they can choose to either discard one, both, or none of them.
+    </p>
+    <h5>Turn 2</h5>
+    <p>Each player is dealt cards until they have six in their hand. They then play three of these cards to the
+      remaining three slots on their respective sides of the gameboard. Then, the first two cards are revealed.</p>
+    <p>Each player is then given the option to swap their last card with one of the three remaining cards in their own
+      hand, at the cost of ten points. Then, the players choose the color for their silver cards in play. Then, once
+      everything is resolved, the winner is determined.</p>
+  </div>
+</body>
+
+</html>
