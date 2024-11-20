@@ -1,13 +1,16 @@
 class FollowRequest < ApplicationRecord
-  scope :accepted, -> { where(status: "accepted") }
-  scope :pending, -> { where(status: "pending") }
-  scope :rejected, -> { where(status: "rejected") }
+  belongs_to :user
+  belongs_to :recipient, class_name: "User", foreign_key: "recipient_id"
 
-  belongs_to :leader, class_name: "User", foreign_key: "leader_id"
-  belongs_to :follower, class_name: "User", foreign_key: "follower_id"
+  enum :status, { pending: 0, accepted: 1, rejected: 2, blocked: 3 }
 
-  validates_presence_of :leader_id, :follower_id
+  scope :accepted, -> { where(status: :accepted) }
 
-  validates :status, presence: true,
-            inclusion: { in: %w[pending accepted rejected] }
+  validate :not_following_self
+  validates :recipient_id, uniqueness: { scope: :user_id, message: "already requested" }
+
+  private
+    def not_following_self
+      errors.add(:recipient, "can't follow self") if user == recipient
+    end
 end

@@ -1,30 +1,31 @@
 require "test_helper"
 
 class FollowRequestTest < ActiveSupport::TestCase
-  test "should not save follow_request without follower_id" do
-    follow_request = FollowRequest.new
-    assert_not follow_request.save, "Saved the follow_request without a follower_id"
+  setup do
+    # sign in users in follow_requests.yml fixtures
+    @user_one = users(:one)
+    @user_two = users(:two)
+    sign_in @user_one
+    sign_in @user_two
+  end
+  test "new request has status pending" do
+    follow_request = @user_one.follow_requests.build(recipient: @user_two)
+    assert follow_request.pending?
   end
 
-  test "should not save follow_request without leader_id" do
-    follow_request = FollowRequest.new
-    assert_not follow_request.save, "Saved the follow_request without a leader_id"
+  test "accepted request has status accepted" do
+    follow_request = follow_requests(:one)
+    follow_request.accepted!
+    assert follow_request.accepted?
   end
 
-  test "should have default status of pending" do
-    follow_request = FollowRequest.new
-    assert_equal "pending", follow_request.status, "Default status should be pending"
+  test "rejected request has status rejected" do
+    follow_request = follow_requests(:two)
+    follow_request.rejected!
+    assert follow_request.rejected?
   end
 
-  test "should be invalid with nil status" do
-    follow_request = FollowRequest.new(status: nil)
-    assert_not follow_request.valid?, "Follow request should be invalid with nil status"
-  end
-
-  test "should be accessible from follower" do
-    follower = users(:one)
-    leader = users(:three)
-    rq = follower.follow_requests.build(leader: leader, status: "accepted")
-    assert_includes follower.follow_requests, rq, "Follow request should be accessible from follower"
+  test "can't follow self" do
+    assert_not follow_requests(:self_request).valid?, "Can follow self"
   end
 end

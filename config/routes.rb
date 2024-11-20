@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
-  resources :follow_requests, only: %i[new create show destroy]
   resources :posts do
     resources :likes, :comments, only: [ :create, :destroy ]
   end
 
 
   devise_for :users
+
+  resources :follow_requests, only: %i[new create destroy], controller: :follow_requests do
+    collection do
+      get :sent
+      get :received
+    end
+    member do
+      patch :accept
+      patch :reject
+    end
+  end
 
   resource :profile, only: %i[show edit update], controller: :profile
 

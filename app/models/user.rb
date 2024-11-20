@@ -7,9 +7,9 @@ class User < ApplicationRecord
   after_create :build_default_profile
 
   has_many :comments, dependent: :destroy, inverse_of: :author
-  has_many :follow_requests, foreign_key: "follower_id", dependent: :destroy
-  has_many :followers, through: :follow_requests
-  has_many :leaders, through: :follow_requests
+  has_many :follow_requests
+  has_many :accepted_follow_requests, -> { accepted }, class_name: "FollowRequest"
+  has_many :followed_users, through: :accepted_follow_requests, source: :recipient
   has_many :likes
   has_many :liked_posts, through: :likes, source: :post
   has_many :posts, inverse_of: :author, dependent: :destroy

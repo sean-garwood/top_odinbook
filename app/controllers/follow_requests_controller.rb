@@ -1,25 +1,33 @@
 class FollowRequestsController < ApplicationController
-  def new
-    @follow_request = FollowRequest.new
-  end
+  before_action -> { @follow_request = FollowRequest.find(params[:id]) }, except: :create
 
   def create
-    @follow_request = FollowRequest.new(follow_request_params)
+    recipient = User.find(follow_request_params[:recipient_id])
+    @follow_request = current_user.follow_requests.build(recipient: recipient)
     if @follow_request.save
-      redirect_to @follow_request
+      redirect_to root_path, notice: "Follow request sent."
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, alert: "Failed to send follow request: #{follow_request.errors.full_messages.join(", ")}"
     end
   end
 
-  def show
+  def accept
+    @follow_request.accepted!
+    redirect_to root_path, notice: "Follow request accepted."
   end
 
   def destroy
+    @follow_request.destroy
+    redirect_to root_path, notice: "Follow request canceled."
+  end
+
+  def reject
+    @follow_request.rejected!
+    redirect_to root_path, notice: "Follow request rejected."
   end
 
   private
     def follow_request_params
-      params.require(:follow_request).permit(:leader_id, :follower_id)
+      params.require(:follow_request).permit(:recipient_id)
     end
 end
