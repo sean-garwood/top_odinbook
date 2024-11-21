@@ -1,0 +1,25 @@
+<h1>Received follow requests</h1>
+<p>All follow requests you received that are pending your acceptance (or
+  cancellation).</p>
+<% if FollowRequest.received(current_user).any? %>
+  <ul>
+    <% FollowRequest.received(current_user).each do |follow_request| %>
+      <li>
+        <p>
+          <%= follow_request.user.handle %>
+          <span class="timestamp">
+            <%= time_ago_in_words(follow_request.created_at) %> ago
+          </span>
+          <%# accept button, PATCH accept_follow_request_path %>
+          <%= link_to "Accept", accept_follow_request_path(follow_request),
+          data: { turbo_method: :post } %>
+          <%# reject button, PATCH reject_follow_request_path %>
+          <%= link_to "Reject", reject_follow_request_path(follow_request),
+          data: { turbo_method: :post } %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You haven't received any follow requests.</p>
+<% end %>
