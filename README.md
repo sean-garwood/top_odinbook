@@ -61,3 +61,54 @@ started below this list:
 Before you move on, we would love it if you could send us your feedback on the
 Ruby on Rails course. Getting user (you) feedback is important so we can
 continue to improve the curriculum and get an idea of your experience.
+
+## Issues
+
+After running `fly launch`:
+
+```bash
+Save your credentials in a secure place -- you won't be able to see them again!
+
+Connect to postgres
+Any app within the Sean Garwood organization can connect to this Postgres using the above connection string
+
+Now that you've set up Postgres, here's what you need to understand: <https://fly.io/docs/postgres/getting-started/what-you-should-know/>
+Checking for existing attachments
+Registering attachment
+Creating database
+Creating user
+
+Postgres cluster top-odinbook-db is now attached to top-odinbook
+The following secret was added to top-odinbook:
+  DATABASE_URL=postgres://top_odinbook:<4GNPV5xfAt7doed@top-odinbook-db.flycast>:5432/top_odinbook?sslmode=disable
+Postgres cluster top-odinbook-db is now attached to top-odinbook
+Fetching gem metadata from <https://rubygems.org/>.........
+Resolving dependencies...
+WARN: Unresolved or ambiguous specs during Gem::Specification.reset:
+      stringio (>= 0)
+      Available/installed versions of this gem:
+      - 3.1.2
+      - 3.1.1
+WARN: Clearing out unresolved specs. Try 'gem cleanup <gem>'
+Please report a bug if this causes problems.
+Running: bin/rails generate dockerfile --label=fly_launch_runtime:rails --skip --postgresql --no-prepare
+        skip  Dockerfile
+        skip  .dockerignore
+        skip  bin/docker-entrypoint
+      create  config/dockerfile.yml
+Wrote config file fly.toml
+Validating /home/ssg/courses/top/rails/projects/top_odinbook/fly.toml
+✓ Configuration is valid
+
+Your Rails app is prepared for deployment.
+
+WARNING: One or more of your config initializer files appears to access
+environment variables or Rails credentials.  These values generally are not
+available during the Docker build process, so you may need to update your
+initializers to bypass portions of your setup during the build process.
+
+More information on what needs to be done can be found at:
+<https://fly.io/docs/rails/getting-started/existing/#access-to-environment-variables-at-build-time>.
+
+Once ready: run 'fly deploy' to deploy your Rails app.
+```
