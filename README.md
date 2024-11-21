@@ -32,10 +32,10 @@ started below this list:
 1. There should be an index page for users, which shows all users and buttons for sending follow requests to users the user is not already following or have a pending request.
 1. There should be an index page for posts, which shows all the recent posts from the current user and users they are following.
 1. Set up a mailer to send a welcome email when a new user signs up. Use the Letter Opener gem to test it in development mode.
+1. Deploy your App to a hosting provider.
 
 #### todo
 
-1. Deploy your App to a hosting provider.
 1. Set up an email provider and start sending real emails.
 1. (NOT SPECIFIED, BUT NICE TO HAVE) Allow users to view and accept friend
    requests. This could be done on the views/requests/index.html.erb with
