@@ -1,5 +1,5 @@
 class FollowRequestsController < ApplicationController
-  before_action -> { @follow_request = FollowRequest.find(params[:id]) }, except: :create
+  before_action -> { @follow_request = FollowRequest.find(params[:id]) }, except: [ :create, :sent, :received ]
 
   def create
     recipient = User.find(follow_request_params[:recipient_id])
@@ -7,7 +7,7 @@ class FollowRequestsController < ApplicationController
     if @follow_request.save
       redirect_to root_path, notice: "Follow request sent."
     else
-      redirect_to root_path, alert: "Failed to send follow request: #{follow_request.errors.full_messages.join(", ")}"
+      redirect_to root_path, alert: "Failed to send follow request: #{@follow_request.errors.full_messages.join(", ")}"
     end
   end
 
@@ -24,6 +24,10 @@ class FollowRequestsController < ApplicationController
   def reject
     @follow_request.rejected!
     redirect_to root_path, notice: "Follow request rejected."
+  end
+
+  def sent
+    @follow_requests = current_user.follow_requests.pending
   end
 
   private

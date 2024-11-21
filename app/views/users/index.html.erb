@@ -1,7 +1,10 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
-<% User.all.each do |user| %>
+<% User.all.each do |other_user| %>
   <div class="users-container">
-    <h2><%= user.email %></h2>
+    <h2>
+      <%= other_user.handle %>
+      <%= render partial: 'layouts/follow_unfollow', locals: { other_user: other_user } %>
+    </h2>
   </div>
 <% end %>

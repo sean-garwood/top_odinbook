@@ -1,6 +1,6 @@
 <div class="profile-container">
   <%= render partial: 'header' %>
-  <p><%= @profile.bio %></p>
+  <p><%= @profile&.bio %></p>
 </div>
 <div>
   <%= button_to "Edit Profile", edit_profile_path, method: :get %>
