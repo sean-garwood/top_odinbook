@@ -4,7 +4,7 @@
   </h2>
   <% @post.comments.each do |comment| %>
     <div class="author-info-container">
-      <p><%= comment.author.email %>, <%= comment.created_at %></p>
+      <p><%= comment.author.handle %>, <%= comment.created_at %></p>
     </div>
     <p><%= comment.body %></p>
   <% end %>

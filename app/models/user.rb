@@ -18,24 +18,52 @@ class User < ApplicationRecord
 
   validates_presence_of :email, unique: true
 
-  def following?(user)
-    followed_users.include?(user)
+  def feed
+    Post.where(author: followed_users).or(Post.where(author: self))
+  end
+
+  def follow(user)
+    follow_requests.create(recipient: user)
+  end
+
+  def followers
+    User.joins(:accepted_follow_requests).where(follow_requests: { recipient: self })
+  end
+
+  def follow_requests_received
+    FollowRequest.pending.where(recipient: self)
+  end
+
+  def follow_requests_sent
+    follow_requests.pending.where(user: self)
+  end
+
+  def handle
+    name || email
+  end
+
+  def unfollow(user)
+    follow_requests.find_by(recipient: user)&.destroy
   end
 
   def followed_by?(user)
     user.following?(self)
   end
 
-  def sent_pending_request_to?(user)
-    follow_requests.pending.where(recipient: user).exists?
+  def following?(user)
+    followed_users.include?(user)
   end
 
   def following_or_sent_pending_request_to?(user)
     following?(user) || sent_pending_request_to?(user)
   end
 
-  def handle
-    name || email
+  def has_received_follow_requests?
+    FollowRequest.received(self).exists?
+  end
+
+  def sent_pending_request_to?(user)
+    follow_requests.pending.where(recipient: user).exists?
   end
 
   private

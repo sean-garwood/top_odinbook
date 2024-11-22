@@ -1,6 +1,11 @@
 class FollowRequestsController < ApplicationController
   before_action -> { @follow_request = FollowRequest.find(params[:id]) }, except: [ :create, :sent, :received ]
 
+  def accept
+    @follow_request.accepted!
+    redirect_to root_path, notice: "Follow request accepted."
+  end
+
   def create
     recipient = User.find(follow_request_params[:recipient_id])
     @follow_request = current_user.follow_requests.build(recipient: recipient)
@@ -11,23 +16,21 @@ class FollowRequestsController < ApplicationController
     end
   end
 
-  def accept
-    @follow_request.accepted!
-    redirect_to root_path, notice: "Follow request accepted."
-  end
-
   def destroy
     @follow_request.destroy
     redirect_to root_path, notice: "Follow request canceled."
   end
 
+  def received
+    @follow_requests = FollowRequest.pending.where(recipient: current_user)
+  end
   def reject
     @follow_request.rejected!
     redirect_to root_path, notice: "Follow request rejected."
   end
 
   def sent
-    @follow_requests = current_user.follow_requests.pending
+    @follow_requests = current_user.follow_requests_sent
   end
 
   private
