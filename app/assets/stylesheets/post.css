@@ -1,9 +1,3 @@
-.post-actions-container {
-  display: flex;
-  justify-content: flex-start;
-  margin: 10px;
-}
-
 .post-body-container {
   font-size: 1.2em;
   background-color: antiquewhite;

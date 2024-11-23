@@ -1,10 +1,10 @@
 <h1>Received follow requests</h1>
 <p>All follow requests you received that are pending your acceptance (or
   cancellation).</p>
-<% if @user.has_received_follow_requests? %>
+<% if current_user.has_received_follow_requests? %>
   <% @follow_requests.each do |request| %>
     <div class="request-container">
-      <%= render partial: 'layouts/banner', locals: { user: request.user } %>
+      <%= render partial: 'layouts/banner', locals: { user: request.sender } %>
       <%# TODO: accept form %>
       <div class="request-button-container">
         <% form_with model: request do |request_form| %>

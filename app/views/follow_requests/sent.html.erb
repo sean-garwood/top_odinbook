@@ -5,7 +5,7 @@
     <% @follow_requests.each do |follow_request| %>
       <li>
         <p>
-          <%= follow_request.recipient.handle %>
+          <%= follow_request.recipient.name %>
           <span class="timestamp">
             <%= time_ago_in_words(follow_request.created_at) %> ago
           </span>

@@ -25,13 +25,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_20_203826) do
   end
 
   create_table "follow_requests", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "sender_id", null: false
     t.bigint "recipient_id", null: false
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipient_id"], name: "index_follow_requests_on_recipient_id"
-    t.index ["user_id"], name: "index_follow_requests_on_user_id"
+    t.index ["sender_id"], name: "index_follow_requests_on_sender_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -75,8 +75,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_20_203826) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users", column: "author_id"
-  add_foreign_key "follow_requests", "users"
   add_foreign_key "follow_requests", "users", column: "recipient_id"
+  add_foreign_key "follow_requests", "users", column: "sender_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users", column: "author_id"

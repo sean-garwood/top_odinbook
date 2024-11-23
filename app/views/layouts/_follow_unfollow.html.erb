@@ -1,9 +1,9 @@
-<% if @user.following_or_sent_pending_request_to?(other_user) %>
+<% if current_user.following_or_sent_pending_request_to?(other_user) %>
   <span>
     <%= link_to "Unfollow",
             follow_request_path(
               FollowRequest.find_by(
-                user: @user, recipient: other_user)),
+                sender: current_user, recipient: other_user)),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
   </span>
 <% else %>

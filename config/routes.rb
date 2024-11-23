@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  root "posts#index"
   resources :posts do
     resources :likes, :comments, only: [ :create, :destroy ]
   end
 
-
   devise_for :users
+  # TODO: namespaced route?
+  #   to get to any user's posts, e.g. from discover page
+  # namespace :users do
+  #   resources :posts, only: :index, as: :username/posts (or something)
+  # end
 
   resources :follow_requests, only: %i[new create destroy], controller: :follow_requests do
     collection do
@@ -17,9 +22,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :profile, only: %i[show edit update], controller: :profile
+  resource :profile, only: %i[show edit update], controller: :profile, as: :profile
+  resolve ("Profile") { [ :profile ] }
 
-  get "users" => "users#index", as: :users
+  get "discover" => "users#index", as: :discover
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -32,5 +38,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  root "posts#index"
+  get "feed" => "posts#index", as: "feed"
 end

@@ -3,7 +3,7 @@
 <% User.all.each do |other_user| %>
   <div class="users-container">
     <h2>
-      <%= other_user.handle %>
+      <%= other_user.name %>
       <%= render partial: 'layouts/follow_unfollow', locals: { other_user: other_user } %>
     </h2>
   </div>

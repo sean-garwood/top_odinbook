@@ -2,17 +2,14 @@ class PostsController < ApplicationController
   before_action :authorize, only: [ :edit, :update, :destroy ]
 
   def index
-    # code to list all posts
-    @posts = Post.by_followed_users(current_user)
+    @posts = current_user.feed
   end
 
   def show
-    # code to show a single post
     @post = Post.find(params[:id])
   end
 
   def new
-    # code to display form for a new post
     @post = Post.new
   end
 
