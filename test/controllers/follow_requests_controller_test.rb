@@ -17,14 +17,15 @@ class FollowRequestsControllerTest < ActionDispatch::IntegrationTest
   test "should create follow request" do
     @new_user = users(:three)
     sign_in @new_user
-    post follow_requests_path, params: { follow_request: { recipient_id: @user_two.id } }
+    @follow_request = @new_user.pending_sent_follow_requests.build(recipient: @user_one)
+    post follow_requests_path, params: { follow_request: { recipient_id: @user_one.id, sender_id: @new_user.id } }
     assert_equal "Follow request sent.", flash[:notice]
   end
 
   test "should destroy follow request" do
     @follow_request = follow_requests(:one)
     delete follow_request_path(@follow_request)
-    assert_equal "Follow request canceled.", flash[:notice]
+    assert_equal "Follow request cancelled.", flash[:notice]
   end
   test "should reject follow request" do
     @follow_request = follow_requests(:one)

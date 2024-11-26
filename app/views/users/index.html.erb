@@ -1,10 +1,8 @@
 <h1>Discover</h1>
 <p>Find new users to follow.</p>
-<% User.all.each do |other_user| %>
-  <div class="users-container">
-    <h2>
-      <%= other_user.name %>
-      <%= render partial: 'layouts/follow_unfollow', locals: { other_user: other_user } %>
-    </h2>
-  </div>
-<% end %>
+<div class="profile-container">
+  <% @users.each do |user| %>
+    <%= render partial: 'layouts/banner', locals: { user: user } %>
+    <%= render partial: 'layouts/follow_unfollow', locals: { user: user } %>
+  <% end %>
+</div>

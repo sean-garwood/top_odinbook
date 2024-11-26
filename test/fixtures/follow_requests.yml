@@ -8,6 +8,10 @@ two:
   sender: two
   recipient: one
 
+three:
+  sender: one
+  recipient: three
+
 self_request:
   sender: one
   recipient: one

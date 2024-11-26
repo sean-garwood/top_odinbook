@@ -1,5 +1,5 @@
-<%= form_with model: @profile do |profile_form| %>
+<%= form_with model: @profile, method: :patch do |profile_form| %>
   <%= profile_form.label :bio %>
   <%= profile_form.text_area :bio %>
-  <%= profile_form.submit "Save Changes", data: {turbo_confirm: "Really save?"} %>
+  <%= profile_form.submit "Save Changes" %>
 <% end %>

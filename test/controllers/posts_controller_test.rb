@@ -51,6 +51,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "index should only show posts from self and followed users" do
     get posts_path
-    assert_select ".post-container", (Post.by_followed_users(@user).count + @user.posts.count)
+    assert_select ".post-container", (
+      @user.feed.count + @user.posts.count
+    ), "Index page should only show posts from self and followed users"
   end
 end

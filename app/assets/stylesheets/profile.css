@@ -4,8 +4,21 @@
   border-radius: 50%;
 }
 
+.profile-banner,
 .profile-container {
+  background-color: lightblue;
   display: flex;
+}
+
+.profile-banner {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  min-width: 25%;
+  padding: 1em;
+}
+
+.profile-container {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;

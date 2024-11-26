@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
   def index
-    @users = User.includes(:profile, :followed_users).all
+    @users = User.all
   end
 end

@@ -9,7 +9,7 @@ class FollowRequestTest < ActiveSupport::TestCase
     sign_in @user_two
   end
   test "new request has status pending" do
-    follow_request = @user_one.follow_requests.build(recipient: @user_two)
+    follow_request = @user_one.pending_sent_follow_requests.build(recipient: @user_two)
     assert follow_request.pending?
   end
 
