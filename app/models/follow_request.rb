@@ -4,8 +4,6 @@ class FollowRequest < ApplicationRecord
 
   enum :status, { pending: 0, accepted: 1, rejected: 2, blocked: 3 }
 
-  scope :received, ->(user) { where(status: :pending, recipient_id: user.id) }
-
   validates :recipient_id,
     uniqueness: { scope: :sender_id, message: "Already requested" },
     comparison: { other_than: :sender_id, message: "Cannot follow self" }

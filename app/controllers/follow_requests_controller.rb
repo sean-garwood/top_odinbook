@@ -27,7 +27,8 @@ class FollowRequestsController < ApplicationController
   end
 
   def received
-    @follow_requests =  current_user.pending_received_follow_requests
+    @follow_requests =  current_user
+      .pending_received_follow_requests.includes(sender: :profile)
   end
 
   def reject
@@ -36,7 +37,8 @@ class FollowRequestsController < ApplicationController
   end
 
   def sent
-    @follow_requests = current_user.pending_sent_follow_requests
+    @follow_requests = current_user
+      .pending_sent_follow_requests.includes(recipient: :profile)
   end
 
   private
