@@ -50,6 +50,9 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "letter_opener", "~> 1.10"
+  gem "dockerfile-rails", ">= 1.6"
+  gem "bullet", "~> 8.0.0"
 end
 
 group :test do
@@ -61,7 +64,3 @@ end
 gem "devise", "~> 4.9"
 
 gem "faker", "~> 3.5"
-
-gem "letter_opener", "~> 1.10", :group => :development
-
-gem "dockerfile-rails", ">= 1.6", :group => :development

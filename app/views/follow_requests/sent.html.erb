@@ -1,21 +1,12 @@
 <h1>Sent follow requests</h1>
 <p>All follow requests you sent that are pending acceptance.</p>
-<% if @follow_requests.any? %>
-  <ul>
-    <% @follow_requests.each do |follow_request| %>
-      <li>
-        <p>
-          <% recipient = follow_request.recipient %>
-          <%= recipient.name %>
-          <span class="timestamp">
-            <%= time_ago_in_words(follow_request.created_at) %> ago
-          </span>
-          <%= render partial: 'layouts/follow_unfollow',
-            locals: { user: recipient } %>
-        </p>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>You haven't sent any follow requests.</p>
+<% @follow_requests.each do |request| %>
+  <div class="request-container">
+    <%= render partial: 'layouts/banner', locals: {
+      user: request.recipient,
+      request: request } %>
+    <%= render partial: 'follow_unfollow', locals: {
+      user: request.recipient,
+      request: request } %>
+  </div>
 <% end %>

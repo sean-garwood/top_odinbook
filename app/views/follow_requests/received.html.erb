@@ -1,24 +1,13 @@
 <h1>Received follow requests</h1>
 <p>All follow requests you received that are pending your acceptance (or
   cancellation).</p>
-<% if current_user.has_received_follow_requests? %>
-  <% @follow_requests.each do |request| %>
-    <div class="request-container">
-      <%= render partial: 'layouts/banner', locals: { user: request.sender } %>
-      <%# TODO: accept form %>
-      <div class="request-button-container">
-        <% form_with model: request do |request_form| %>
-          <fieldset>
-            <legend>Accept</legend>
-            <% request_form.hidden_field :status, value: "accepted" %>
-            <% request_form.hidden_field :id, value: request.id %>
-            <%= request_form.label "yeah" %>
-            <%= request_form.submit "Accept" %>
-          </fieldset>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <p>You haven't received any follow requests.</p>
+<% @follow_requests.each do |request| %>
+  <div class="request-container">
+    <%= render partial: 'layouts/banner', locals: {
+      user: request.sender,
+      request: request } %>
+    <%= render partial: 'follow_unfollow', locals: {
+      user: request.sender,
+      request: request } %>
+  </div>
 <% end %>
