@@ -6,7 +6,6 @@
 
 .profile-banner,
 .profile-container {
-  background-color: lightblue;
   display: flex;
 }
 
@@ -14,7 +13,7 @@
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  min-width: 25%;
+  min-width: 25vw;
   padding: 1em;
 }
 
@@ -22,7 +21,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: azure;
   padding-left: 1em;
 }
 

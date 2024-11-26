@@ -47,7 +47,7 @@ class User < ApplicationRecord
   validates_presence_of :email, unique: true
 
   def feed
-    Post.order(:created_at).includes(:author).where(author: followed_users).or(Post.where(author: self))
+    Post.order(created_at: :desc).includes(author: :profile).where(author: followed_users).or(Post.where(author: self))
   end
 
   def follow(user)
