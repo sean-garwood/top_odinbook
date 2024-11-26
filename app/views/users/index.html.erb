@@ -1,8 +1,12 @@
 <h1>Discover</h1>
 <p>Find new users to follow.</p>
-<div class="profile-container">
-  <% @users.each do |user| %>
+<% @users.each do |user| %>
+  <div class="request-container">
     <%= render partial: 'layouts/banner', locals: { user: user } %>
-    <%= render partial: 'layouts/follow_unfollow', locals: { user: user } %>
-  <% end %>
-</div>
+    <%= render partial: 'follow_requests/follow_unfollow', locals: {
+      user: user,
+      request: current_user.pending_sent_follow_requests
+        .build(sender: current_user, recipient: user),
+      recipient: user } %>
+  </div>
+<% end %>
