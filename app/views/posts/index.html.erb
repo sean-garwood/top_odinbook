@@ -1,4 +1,8 @@
-<h1>Feed</h1>
+  
+<div class="page-header">
+  <h1>Feed</h1>
+  <p>Posts from you and users you follow.</p>
+</div>
 <div class="posts-container">
   <% @posts.each do |post| %>
     <div class="post-container">
@@ -14,7 +18,7 @@
         <% if post.author.eql?(current_user) %>
           <%# TODO: edit post button %>
           <%= link_to "Delete post", post_path(post), data: { turbo_method:
-        :delete, turbo_confirm: "Are you sure?" } %>
+          :delete, turbo_confirm: "Are you sure?" } %>
         <% end %>
         <%# TODO: like, comment post button %>
       </div>

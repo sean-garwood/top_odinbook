@@ -10,11 +10,11 @@
 }
 
 .profile-banner {
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
+  gap: 2em;
   align-items: center;
-  min-width: 25vw;
-  padding: 1em;
+  padding: 0.5em;
 }
 
 .profile-container {

@@ -15,14 +15,20 @@
  */
 
 @import "comment";
+@import "follow_request";
 @import "post";
 @import "profile";
+
+body {
+  /* HACK */
+  overflow-x: hidden;
+  margin: 0;
+}
 
 html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
   background-color: #9999FF;
-  ;
 }
 
 div a {
@@ -38,13 +44,35 @@ div a {
 }
 
 .container {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.flash {
+.content-container {
+  display: flex;
+  flex-direction: column;
+  /* stretch to fill available vh: */
+  flex: 1;
+  margin: 10px;
+  min-width: 500px;
+}
+
+.debug {
+  background-color: white;
+  border-color: red;
+  border-style: solid;
+}
+
+.form-fields-container>div {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  gap: 10px;
+}
+
+.flash-container {
   padding: 10px;
   margin-bottom: 10px auto;
   border-radius: 5px;
@@ -66,4 +94,10 @@ div a {
   display: flex;
   justify-content: space-between;
   padding: 2em 1.2em;
+  width: 100%;
+}
+
+.page-header {
+  padding: 1em;
+  align-items: left;
 }

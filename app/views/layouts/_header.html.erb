@@ -2,4 +2,4 @@
   <%= render partial: "layouts/header/nav" %>
   <%= render partial: "layouts/header/devise" %>
 </div>
-<%= render partial: "layouts/header/flash" %>
+<%= render partial: "layouts/header/flash" unless flash.empty? %>

@@ -1,6 +1,8 @@
 .post-body-container {
   font-size: 1.2em;
   background-color: antiquewhite;
+  padding: 0 0.5em;
+  margin-bottom: 1em;
 }
 
 .post-container {
@@ -10,7 +12,6 @@
   background-color: lightgray;
   display: flex;
   flex-direction: column;
-  max-width: 80vw;
   flex-wrap: wrap;
   /* fit content to width with max at 80vw */
 }
@@ -20,13 +21,6 @@
   flex-direction: column;
   padding: 10px;
   background-color: lightgray;
-}
-
-.post-form-fields-container {
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  gap: 10px;
 }
 
 .author-info-container {

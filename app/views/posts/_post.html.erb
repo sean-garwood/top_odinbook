@@ -1,5 +1,15 @@
-<div class="post-container">
-  <h2><%= @post.title %></h2>
-  <p><%= @post.body %></p>
-  <p><%= @post.likes_count %> likes</p>
+  
+<div class="author-info-container">
+  <p>By <%= @post.author.name %></p>
+  <p>
+    <%= time_ago_in_words(@post.created_at) %> ago</p>
+  <% if @post.updated_at != @post.created_at %>
+    <p>
+      Edited <%= time_ago_in_words(@post.updated_at) %> ago
+    </p>
+  <% end %>
 </div>
+<div class="post-body-container">
+  <p class="post-body"><%= @post.body %></p>
+</div>
+<p><%= @post.likes_count %> likes</p>

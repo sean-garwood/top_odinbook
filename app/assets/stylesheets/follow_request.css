@@ -1,8 +1,12 @@
 .request-container {
-    display: inline-flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
     padding: 10px;
-    max-width: 50vw;
+    gap: 1em;
+}
+
+.requests-container {
+    /* inherit from debug for now */
 }

@@ -1,14 +1,18 @@
 <%# display action name in header %>
-<h1><%= action_name.capitalize %> Follow Requests </h1>
-<p>All follow requests that you have <%= action_name %> that are pending.</p>
-<% @follow_requests.each do |request| %>
-  <% from_to_user = current_page?(action: 'sent') ? request.recipient : request.sender %>
-  <div class="request-container">
-    <%= render partial: 'layouts/banner', locals: {
-      user: from_to_user,
-      request: request } %>
-    <%= render partial: 'follow_unfollow', locals: {
-      user: from_to_user,
-      request: request } %>
-  </div>
-<% end %>
+<div class="page-header">
+  <h1><%= action_name.capitalize %> Follow Requests </h1>
+  <p>All follow requests that you have <%= action_name %> that are pending.</p>
+</div>
+<div class="requests-container">
+  <% @follow_requests.each do |request| %>
+    <% from_to_user = current_page?(action: 'sent') ? request.recipient : request.sender %>
+    <div class="request-container">
+      <%= render partial: 'layouts/banner', locals: {
+        user: from_to_user,
+        request: request } %>
+      <%= render partial: 'follow_unfollow', locals: {
+        user: from_to_user,
+        request: request } %>
+    </div>
+  <% end %>
+</div>

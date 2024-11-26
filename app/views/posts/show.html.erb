@@ -1,3 +1,9 @@
-<%= render partial: 'post' %>
-<%= render partial: 'actions' %>
-<%= render partial: 'comments' %>
+  
+<div class="page-header">
+  <h2><%= @post.title %></h2>
+</div>
+<div class="post-container">
+  <%= render partial: 'post' %>
+  <%= render partial: 'actions' %>
+  <%= render partial: 'comments' %>
+</div>
