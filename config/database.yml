@@ -83,5 +83,6 @@ test:
 production:
   <<: *default
   database: top_odinbook_production
-  username: top_odinbook
-  password: <%= ENV["TOP_ODINBOOK_DATABASE_PASSWORD"] %>
+  username: <%= ENV["ODINBOOK_DB_USER"] %>
+
+  password: <%= ENV["ODINBOOK_DB_PASSWORD"] %>
