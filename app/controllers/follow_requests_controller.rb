@@ -26,6 +26,14 @@ class FollowRequestsController < ApplicationController
     end
   end
 
+  def edit
+    @follow_request = FollowRequest.find(params[:id])
+  end
+
+  def new
+    @follow_request = FollowRequest.new
+  end
+
   def received
     @follow_requests =  current_user
       .pending_received_follow_requests.includes(sender: :profile)

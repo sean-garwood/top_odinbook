@@ -9,9 +9,11 @@ class FollowRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should accept follow request" do
-    @follow_request = follow_requests(:one)
+    @follow_request = @user_one.pending_received_follow_requests.create(sender: @user_two)
+    assert @follow_request.valid?, "Follow request not valid: #{@follow_request.errors.inspect}"
     patch accept_follow_request_path(@follow_request)
-    assert_equal "Follow request accepted.", flash[:notice]
+    @follow_request.reload
+    assert_equal @follow_request.status, "accepted"
   end
 
   test "should create follow request" do
@@ -23,12 +25,12 @@ class FollowRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy follow request" do
-    @follow_request = follow_requests(:one)
+    @follow_request = follow_requests(:two)
     delete follow_request_path(@follow_request)
     assert_equal "Follow request cancelled.", flash[:notice]
   end
   test "should reject follow request" do
-    @follow_request = follow_requests(:one)
+    @follow_request = follow_requests(:three)
     patch reject_follow_request_path(@follow_request)
     assert_equal "Follow request rejected.", flash[:notice]
   end

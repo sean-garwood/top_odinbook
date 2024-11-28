@@ -1,18 +1,24 @@
-<%# display action name in header %>
+<%# HACK: just filter the discover page for followed/unfollowed %>
 <div class="page-header">
   <h1><%= action_name.capitalize %> Follow Requests </h1>
   <p>All follow requests that you have <%= action_name %> that are pending.</p>
 </div>
 <div class="requests-container">
   <% @follow_requests.each do |request| %>
-    <% from_to_user = current_page?(action: 'sent') ? request.recipient : request.sender %>
     <div class="request-container">
-      <%= render partial: 'layouts/banner', locals: {
-        user: from_to_user,
-        request: request } %>
-      <%= render partial: 'follow_unfollow', locals: {
-        user: from_to_user,
-        request: request } %>
+      <% if current_page?(action: 'sent') %>
+        <%= render partial: 'layouts/banner', locals: {
+        user: request.recipient} %>
+        <%= render partial: 'unfollow', locals: {
+      request: request,
+      recipient: request.recipient }%>
+      <% else %>
+        <%= render partial: 'layouts/banner', locals: {
+        user: request.sender} %>
+        <%= form_with url: accept_follow_request_path(request), method: :patch do %>
+          <%= submit_tag 'Accept' %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 </div>

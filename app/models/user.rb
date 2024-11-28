@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   after_create :build_default_profile
 
-  delegate :name, to: :profile, allow_nil: false
+  delegate :name, to: :profile, allow_nil: true
   has_many :comments, dependent: :destroy, inverse_of: :author
   has_many :pending_received_follow_requests, -> { pending },
     class_name: "FollowRequest",
@@ -53,8 +53,6 @@ class User < ApplicationRecord
     follow_requests.create(recipient: user)
   end
 
-  # HACK: N+1 and tons of dumb checks.
-  # This is a very inefficient way to check if a user is following another user.
   def following?(user)
     followed_users.include?(user)
   end
@@ -69,7 +67,7 @@ class User < ApplicationRecord
   end
 
   def sent_pending_request_to?(user) # HACK
-    sent_follow_requests.pending.where(recipient: user).exists?
+    pending_sent_follow_requests.where(recipient: user).exists?
   end
 
   private

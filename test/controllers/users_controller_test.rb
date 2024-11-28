@@ -22,6 +22,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "list of users should display username, not email" do
     sign_in users(:one)
+    assert users(:one).email
     get discover_path
     assert_select ".profile-banner", text: users(:two).name
     assert_select ".profile-banner", text: users(:two).email, count: 0
