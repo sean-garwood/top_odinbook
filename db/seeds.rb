@@ -1,4 +1,3 @@
-
 class FakeComment
   def self.create
     author = User.all.sample
@@ -43,7 +42,7 @@ class FakeUser
   end
 end
 
-def create_fakes(klass = KLASSES[0], count = 10)
+def create_fakes(klass = KLASSES[0], count = SEED_COUNT)
   count.times do
     thing = klass.create
     puts "Created #{thing.inspect}"
@@ -55,5 +54,6 @@ KLASSES = [ FakeUser.new.class,
             FakePost.new.class,
             FakeComment.new.class,
             FakeLike.new.class     ]
+SEED_COUNT = 10
 
 KLASSES.each { |klass| create_fakes(klass) }

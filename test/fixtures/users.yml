@@ -11,6 +11,14 @@ three:
   email: user_three@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
+four:
+  email: user_four@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+five:
+  email: user_five@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
 new_user:
   email: new@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

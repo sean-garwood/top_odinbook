@@ -9,23 +9,28 @@ class FollowRequestTest < ActiveSupport::TestCase
     sign_in @user_two
   end
   test "new request has status pending" do
-    follow_request = @user_one.pending_sent_follow_requests.build(recipient: @user_two)
+    follow_request = follow_requests(:one)
     assert follow_request.pending?
   end
 
   test "accepted request has status accepted" do
-    follow_request = follow_requests(:one)
+    follow_request = follow_requests(:two)
     follow_request.accepted!
     assert follow_request.accepted?
   end
 
   test "rejected request has status rejected" do
-    follow_request = follow_requests(:two)
+    follow_request = follow_requests(:three)
     follow_request.rejected!
     assert follow_request.rejected?
   end
 
   test "can't follow self" do
     assert_not follow_requests(:self_request).valid?, "Can follow self"
+  end
+
+  test "can't send duplicate request" do
+    assert_not_nil follow_requests(:one)
+    assert_not follow_requests(:duplicate_request).valid?, "Can send duplicate request"
   end
 end

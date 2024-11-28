@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   after_create :build_default_profile
 
-  delegate :name, to: :profile, allow_nil: true
+  delegate :name, to: :profile, allow_nil: false
   has_many :comments, dependent: :destroy, inverse_of: :author
   has_many :pending_received_follow_requests, -> { pending },
     class_name: "FollowRequest",
@@ -39,8 +39,7 @@ class User < ApplicationRecord
     dependent: :destroy
   has_one :profile,
     dependent: :destroy,
-    inverse_of: :user,
-    touch: true
+    inverse_of: :user
 
   scope :not_followed_users, ->(user) { includes(:name).where.not(id: user.followed_users) }
 
@@ -75,10 +74,8 @@ class User < ApplicationRecord
 
   private
     def build_default_profile
-      @profile = Profile.new(user: self,
+      self.build_profile(
         name: Faker::TvShows::Simpsons.character,
         bio: Faker::TvShows::Simpsons.quote)
-      logger = (@profile.save) ? "Profile created successfully." : "Failed to create profile."
-      Rails.logger.info { logger }
     end
 end

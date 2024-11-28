@@ -6,12 +6,20 @@ one:
 
 two:
   sender: two
-  recipient: one
+  recipient: three
 
 three:
-  sender: one
-  recipient: three
+  sender: three
+  recipient: four
+
+four:
+  sender: four
+  recipient: five
 
 self_request:
   sender: one
   recipient: one
+
+duplicate_request:
+  sender: one
+  recipient: two

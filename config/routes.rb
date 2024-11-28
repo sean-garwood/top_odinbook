@@ -5,11 +5,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  # TODO: namespaced route?
-  #   to get to any user's posts, e.g. from discover page
-  # namespace :users do
-  #   resources :posts, only: :index, as: :username/posts (or something)
-  # end
 
   resources :follow_requests, only: %i[new create destroy], controller: :follow_requests do
     collection do

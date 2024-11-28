@@ -20,6 +20,9 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  # Was not able to visit the `http://localhost:3000/discover` page:
+  config.force_ssl = false
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

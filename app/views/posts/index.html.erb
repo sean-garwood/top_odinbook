@@ -1,10 +1,18 @@
-  
 <div class="page-header">
   <h1>Feed</h1>
   <p>Posts from you and users you follow.</p>
 </div>
 <div class="posts-container">
   <% @posts.each do |post| %>
+    <% Rails.logger.debug { "\e[1;31mPost: #{post.inspect}
+      #{}\e[0m" }
+   %>
+    <% Rails.logger.debug { "\e[1;31mPost author: #{post.author.inspect}
+       #{}\e[0m" }
+    %>
+    <% Rails.logger.debug { "\e[1;31mPost author name: #{post.author.name}
+        #{}\e[0m" }
+     %>
     <div class="post-container">
       <h2 class="post-title"><%= post.title %></h2>
       <div class="author-info-container">
@@ -17,6 +25,7 @@
         <%= link_to "View post", post_path(post) %>
         <% if post.author.eql?(current_user) %>
           <%# TODO: edit post button %>
+          <%= link_to "Edit post", edit_post_path(post) %>
           <%= link_to "Delete post", post_path(post), data: { turbo_method:
           :delete, turbo_confirm: "Are you sure?" } %>
         <% end %>
