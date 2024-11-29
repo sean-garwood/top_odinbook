@@ -1,0 +1,10 @@
+<%# _search.html.erb %>
+<div class="search-container">
+  <%= form_with method: :get do |search_form| %>
+    <legend>Filter by:</legend>
+    <%= search_form.select :filter,
+        %w[all followed not\ followed],
+        { selected: params[:filter] || "not followed" } %>
+    <%= search_form.submit "Filter" %>
+  <% end %>
+</div>

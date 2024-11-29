@@ -1,4 +1,3 @@
-<%# FIXIT: not posting changes %>
 <%= form_with(model: FollowRequest.new) do |form| %>
   <%= form.hidden_field :recipient_id, value: recipient.id %>
   <%= form.hidden_field :sender_id, value: current_user.id %>

@@ -1,10 +1,12 @@
 class User < ApplicationRecord
+  include SimpsonsHelper
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :build_default_profile
+  after_create -> { create_profile(name: simpsons_name, bio: simpsons_quote) }
 
   delegate :name, to: :profile, allow_nil: true
   has_many :comments, dependent: :destroy, inverse_of: :author
@@ -41,8 +43,6 @@ class User < ApplicationRecord
     dependent: :destroy,
     inverse_of: :user
 
-  scope :not_followed_users, ->(user) { includes(:name).where.not(id: user.followed_users) }
-
   validates_presence_of :email, unique: true
 
   def feed
@@ -58,22 +58,11 @@ class User < ApplicationRecord
   end
 
 
-  def following_or_sent_pending_request_to?(user) # HACK
+  def following_or_sent_pending_request_to?(user) # OPTIMIZE
     following?(user) || sent_pending_request_to?(user)
   end
 
-  def has_received_follow_requests? # HACK
-    FollowRequest.received(self).exists?
-  end
-
-  def sent_pending_request_to?(user) # HACK
+  def sent_pending_request_to?(user) # OPTIMIZE
     pending_sent_follow_requests.where(recipient: user).exists?
   end
-
-  private
-    def build_default_profile
-      self.build_profile(
-        name: Faker::TvShows::Simpsons.character,
-        bio: Faker::TvShows::Simpsons.quote)
-    end
 end

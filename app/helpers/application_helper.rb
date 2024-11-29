@@ -1,14 +1,13 @@
 module ApplicationHelper
-  # TODO: load faker::simpsons stuff
-
   LOGGERS = %i[debug info warn error fatal unknown]
+
   def log_error(data, method)
-    Rails.logger.error { "Failed to #{method}: #{data}" }
+    Rails.logger.error { "Failed to #{method}: #{data.inspect}" }
   end
 
-  def my_debugger(**data)
-    wrapper = "\e[1;31mDEBUG: #{data.expand}\e[0m"
-    my_logger(wrapper, :debug)
+  def my_debugger(data)
+    wrapper = "\e[1;31mDEBUG: #{data.inspect}\e[0m"
+    my_logger(wrapper)
   end
 
   def my_logger(data, method = :debug)

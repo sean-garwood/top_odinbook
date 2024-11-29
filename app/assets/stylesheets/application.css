@@ -20,7 +20,7 @@
 @import "profile";
 
 body {
-  /* HACK */
+  /* OPTIMIZE */
   overflow-x: hidden;
   margin: 0;
 }
@@ -56,7 +56,7 @@ div a {
   /* stretch to fill available vh: */
   flex: 1;
   margin: 10px;
-  min-width: 500px;
+  min-width: 250px;
 }
 
 .debug {

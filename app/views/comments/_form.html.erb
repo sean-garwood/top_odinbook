@@ -1,0 +1,10 @@
+<div class="new-comment-container">
+  <%= form_with model: [@post, Comment.new] do |comment_form| %>
+    <fieldset>
+      <legend>Comment on this post
+      </legend>
+      <%= comment_form.text_area :body, cols: 40, rows: 12 %>
+    </fieldset>
+    <%= comment_form.submit "Comment" %>
+  <% end %>
+</div>

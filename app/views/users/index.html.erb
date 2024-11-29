@@ -1,9 +1,9 @@
-<%# TODO: search form to filter by followed/unfollowed %>
-<%#   probably change route name from 'discover' %>
+<% my_debugger(params) %>
 <div class="page-header">
   <h1>Discover</h1>
   <p>Find new users to follow.</p>
 </div>
+<%= render partial: 'search' %>
 <div class="requests-container">
   <% @users.each do |user| %>
     <div class="request-container">
@@ -20,8 +20,8 @@
             request: request,
             recipient: user } %>
         <% else %>
-          <%= render partial: 'follow_requests/follow', locals: {
-            recipient: user } %>
+          <%= render partial: 'follow_requests/follow',
+            locals: { recipient: user } %>
         <% end %>
       </div>
     </div>
