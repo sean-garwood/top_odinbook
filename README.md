@@ -33,13 +33,7 @@ started below this list:
 1. There should be an index page for posts, which shows all the recent posts from the current user and users they are following.
 1. Set up a mailer to send a welcome email when a new user signs up. Use the Letter Opener gem to test it in development mode.
 1. Deploy your App to a hosting provider.
-
-#### todo
-
 1. Set up an email provider and start sending real emails.
-1. (NOT SPECIFIED, BUT NICE TO HAVE) Allow users to view and accept friend
-   requests. This could be done on the views/requests/index.html.erb with
-   embedded buttons
 
 ##### Extra credit
 
@@ -48,6 +42,9 @@ started below this list:
 1. Make your post able to be either a text OR a photo by using a polymorphic association (so users can still like or comment on it while being none-the-wiser).
 1. Style it up nicely! We’ll dive into HTML/CSS in the next course.
 1. (not specified, but cool) Use turbo frames to avoid rendering entire pages
+1. (NOT SPECIFIED, BUT NICE TO HAVE) Allow users to view and accept friend
+   requests. This could be done on the views/requests/index.html.erb with
+   embedded buttons
 
 ### Getting started
 
