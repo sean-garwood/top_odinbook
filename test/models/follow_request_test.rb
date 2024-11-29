@@ -19,12 +19,6 @@ class FollowRequestTest < ActiveSupport::TestCase
     assert follow_request.accepted?
   end
 
-  test "rejected request has status rejected" do
-    follow_request = follow_requests(:three)
-    follow_request.rejected!
-    assert follow_request.rejected?
-  end
-
   test "can't follow self" do
     assert_not follow_requests(:self_request).valid?, "Can follow self"
   end

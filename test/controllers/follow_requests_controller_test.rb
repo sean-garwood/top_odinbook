@@ -29,9 +29,4 @@ class FollowRequestsControllerTest < ActionDispatch::IntegrationTest
     delete follow_request_path(@follow_request)
     assert_equal "Follow request cancelled.", flash[:notice]
   end
-  test "should reject follow request" do
-    @follow_request = follow_requests(:three)
-    patch reject_follow_request_path(@follow_request)
-    assert_equal "Follow request rejected.", flash[:notice]
-  end
 end

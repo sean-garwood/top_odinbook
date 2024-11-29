@@ -7,6 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_create -> { create_profile(name: simpsons_name, bio: simpsons_quote) }
+  # send a welcome email after a user is created
+  after_create -> { UserMailer.with(user: self).welcome_email.deliver_later }
 
   delegate :name, to: :profile, allow_nil: true
   has_many :comments, dependent: :destroy, inverse_of: :author
