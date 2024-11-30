@@ -2,8 +2,10 @@
   <h1><% action_name == "edit" ? "Edit " : "" %>Profile</h1>
   <p>Keep the world apprised of your state--as if it cares.</p>
 </div>
-<%= render partial: 'layouts/banner', locals: { user: current_user } %>
-<p><%= @profile.bio %></p>
-<div class="actions-container">
-  <%= link_to "Edit Profile", edit_profile_path, method: :get %>
+<div>
+  <%= render partial: 'layouts/banner', locals: { user: current_user } %>
+  <p><%= @profile.bio %></p>
+  <div class="actions-container">
+    <%= link_to "Edit Profile", edit_profile_path, method: :get %>
+  </div>
 </div>

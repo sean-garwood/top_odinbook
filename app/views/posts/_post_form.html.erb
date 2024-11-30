@@ -1,26 +1,23 @@
-  
 <div class="page-header">
-  <h1><%= "#{action_name.capitalize} post" %></h1>
-  <legend>
-    Tell the world a thing or two.
-  </legend>
+  <h2><%= "#{action_name.capitalize} Post" %></h2>
 </div>
-<div class="post-form-container">
-  <%= form_with model: @post do |post_form| %>
-    <fieldset>
-      <div class="form-fields-container">
-        <div class="post-title">
+<div class="post-container">
+  <div>
+    <%= form_with model: @post, local: true do |post_form| %>
+      <legend>
+        Tell the world a thing or two.
+      </legend>
+      <fieldset>
+        <div class="form-group">
           <%= post_form.label :title %>
-          <%= post_form.text_field :title %>
+          <%= post_form.text_field :title, class: 'form-control' %>
         </div>
-        <div class="post-body">
-          <%= post_form.label :body  %>
-          <%= post_form.text_area :body,
-              rows: 10,
-              cols: 80 %>
+        <div class="form-group">
+          <%= post_form.label :body %>
+          <%= post_form.text_area :body, rows: 12, cols: 40, class: 'form-control' %>
         </div>
-      </div>
-    </fieldset>
-    <%= post_form.submit "Submit" %>
-  <% end %>
+      </fieldset>
+      <%= post_form.submit "Submit", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 </div>

@@ -28,7 +28,6 @@ body {
 html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
-  background-color: #9999FF;
 }
 
 div a {
@@ -57,12 +56,6 @@ div a {
   flex: 1;
   margin: 10px;
   min-width: 250px;
-}
-
-.debug {
-  background-color: white;
-  border-color: red;
-  border-style: solid;
 }
 
 .form-fields-container>div {

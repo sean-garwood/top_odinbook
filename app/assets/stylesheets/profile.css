@@ -8,24 +8,3 @@
 .profile-container {
   display: flex;
 }
-
-.profile-banner {
-  justify-content: flex-start;
-  flex-direction: row;
-  gap: 2em;
-  align-items: center;
-  padding: 0.5em;
-}
-
-.profile-container {
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding-left: 1em;
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
