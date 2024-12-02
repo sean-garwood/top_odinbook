@@ -20,6 +20,13 @@
   border-style: solid;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  min-width: 80vw;
+  padding: 1em;
+}
+
 .profile-banner {
   justify-content: flex-start;
   flex-direction: row;

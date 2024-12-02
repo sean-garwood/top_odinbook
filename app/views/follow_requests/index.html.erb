@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h2>Follow requests</h2>
+  <p>All sending or received follow requests with a status of pending.</p>
+</div>
+<div class="requests-container">
+  <h3>Sent requests</h3>
+  <div class="sent-requests-container">
+    <% @sent.each do |sent_request| %>
+      <div class="request-container">
+        <%= render partial: 'layouts/banner', locals: { user: sent_request.recipient } %>
+        <%= render partial: 'unfollow', locals: { request: sent_request, recipient: sent_request.recipient } %>
+      </div>
+    <% end %>
+  </div>
+  <h3>Received requests</h3>
+  <div class="received-requests-container">
+    <% @received.each do |received_request| %>
+      <div class="request-container">
+        <%= render partial: 'layouts/banner', locals: { user: received_request.sender } %>
+        <%= form_with url: accept_follow_request_path(received_request), method: :patch do %>
+          <%= submit_tag 'Accept' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

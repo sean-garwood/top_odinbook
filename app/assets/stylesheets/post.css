@@ -1,5 +1,5 @@
 .post-body-container {
-  background-color: lightcyan;
+  background-color: darkcyan;
   padding: 0 0.5em;
   margin: 1em;
 }
@@ -7,7 +7,7 @@
 .post-container {
   margin: 10px;
   padding: 10px;
-  background-color: lightblue;
+  background-color: darkslategray;
 }
 
 .author-info-container {

@@ -6,11 +6,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :follow_requests, only: %i[new create destroy], controller: :follow_requests do
-    collection do
-      get :sent
-      get :received
-    end
+  resources :follow_requests,
+    only: %i[index new create destroy],
+    controller: :follow_requests do
     member do
       patch :accept
     end

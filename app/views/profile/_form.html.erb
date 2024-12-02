@@ -1,4 +1,6 @@
 <%= form_with model: @profile, method: :patch do |profile_form| %>
+  <%= profile_form.label :name %>
+  <%= profile_form.text_field :name %>
   <%= profile_form.label :bio %>
   <%= profile_form.text_area :bio %>
   <%= profile_form.submit "Save Changes" %>

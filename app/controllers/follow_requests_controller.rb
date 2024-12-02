@@ -2,6 +2,11 @@ class FollowRequestsController < ApplicationController
   include ApplicationHelper
   before_action -> { @follow_request = FollowRequest.find(params[:id]) }, only: %i[accept destroy reject]
 
+  def index
+    @sent = FollowRequest.pending.where(sender: current_user)
+    @received = FollowRequest.pending.where(recipient: current_user)
+  end
+
   def accept
     @follow_request.accepted!
     redirect_to root_path, notice: "Follow request accepted."
@@ -34,19 +39,9 @@ class FollowRequestsController < ApplicationController
     @follow_request = FollowRequest.new
   end
 
-  def received
-    @follow_requests =  current_user
-      .pending_received_follow_requests.includes(sender: :profile)
-  end
-
   def reject
     @follow_request.rejected!
     redirect_to root_path, notice: "Follow request rejected."
-  end
-
-  def sent
-    @follow_requests = current_user
-      .pending_sent_follow_requests.includes(recipient: :profile)
   end
 
   private
