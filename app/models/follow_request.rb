@@ -6,6 +6,11 @@ class FollowRequest < ApplicationRecord
   enum :status, { pending: 0, accepted: 1 }
 
   validates :recipient_id,
-    uniqueness: { scope: :sender_id, message: "Already requested" },
+    presence: true,
+    uniqueness: { scope: [ :sender_id, :recipient_id ], message: "Already requested" },
     comparison: { other_than: :sender_id, message: "Cannot follow self" }
+  validates :sender_id,
+    presence: true,
+    uniqueness: { scope: [ :sender_id, :recipient_id ], message: "Already requested" },
+    comparison: { other_than: :recipient_id, message: "Cannot follow self" }
 end

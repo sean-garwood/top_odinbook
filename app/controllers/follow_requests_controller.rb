@@ -3,8 +3,8 @@ class FollowRequestsController < ApplicationController
   before_action -> { @follow_request = FollowRequest.find(params[:id]) }, only: %i[accept destroy reject]
 
   def index
-    @sent = FollowRequest.pending.where(sender: current_user)
-    @received = FollowRequest.pending.where(recipient: current_user)
+    @sent = FollowRequest.pending.where(sender: current_user).includes(recipient: :profile)
+    @received = FollowRequest.pending.where(recipient: current_user).includes(sender: :profile)
   end
 
   def accept
@@ -13,7 +13,7 @@ class FollowRequestsController < ApplicationController
   end
 
   def create
-    @follow_request = current_user.pending_sent_follow_requests.build(follow_request_params)
+    @follow_request = current_user.sent_follow_requests.build(follow_request_params)
     if @follow_request.save
       redirect_to root_path, notice: "Follow request sent."
     else
