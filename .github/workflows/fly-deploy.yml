@@ -12,6 +12,11 @@ jobs:
     concurrency: deploy-group    # optional: ensure only one action runs at a time
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install --global yarn
+      - run: yarn install
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
         env:
