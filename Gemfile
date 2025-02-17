@@ -52,7 +52,7 @@ group :development do
   gem "web-console"
   gem "letter_opener", "~> 1.10"
   gem "dockerfile-rails", ">= 1.6"
-  gem "bullet", "~> 8.0.0"
+  gem "bullet", "~> 8.0.1"
 end
 
 group :test do
